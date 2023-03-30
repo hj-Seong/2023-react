@@ -9,6 +9,14 @@ import { LoginText } from './components/LoginComp';
 import TextComp from './components/TextComp';
 import OtherComp from './components/OtherComp';
 
+/** 리액트에서 오류가 뜨는 이유 
+ * 1. 존재하지 않는 컴포넌트 출력 
+ * (컴포넌트를 만든 이후에 이름은 가능하면 바꾸지 말 것
+ * > 이름을 바꾼 후에는 바꾼 그 이름으로 모든 컴포넌트 수정)
+ * 2. {}를 닫지않았을 경우
+ *  >> 오류코드를 보면서 각 line에 있는 코드들을 
+ *     주석/삭제 처리하면서 확인
+*/
 function App() {
   return (
     <div className="App">
