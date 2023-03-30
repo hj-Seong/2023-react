@@ -6,6 +6,8 @@ import MyComponent from './components/MyComponent';
 import LoginComp from './components/LoginComp';
 import { LoginText } from './components/LoginComp';
 
+import TextComp from './components/TextComp';
+
 function App() {
   return (
     <div className="App">
@@ -13,10 +15,15 @@ function App() {
       <MyComponent />
       {/* 만든 컴포넌트에 속성=값을 통해 값을 props전달 */}
       <LoginComp login={true} name="홍길동" />
-      {/**만든 컴포넌트사이에 글자를 적어서 전달 */}
-      {/** props의 children으로 전달 */}
-      {/** props값을 전달하지 않으면 undefined로 들어감 */}
+      {/* 컴포넌트사이에 글자를 적으면 props의 children으로 전달 */}
+      {/* props값을 전달하지 않으면 undefined로 들어감 */}
       <LoginComp>내용 전달</LoginComp>
+      {/** 새로운 TextComp를 만들어서 
+       * children에 들어간 값을 h1태그에 넣어서 출력하세요
+       * name값을 받아와서 p태그에 name님 을 출력하세요
+       */}
+      <TextComp name="홍길동">반갑습니다</TextComp>
+      <TextComp name="성춘향">환영합니다</TextComp>
     </div>
   );
 }
