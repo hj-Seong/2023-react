@@ -38,7 +38,10 @@ function App() {
       <TextComp name="성춘향">환영합니다</TextComp>
       <OtherComp name={123}/>
       
-      {/** State를 가진 컴포넌트 */}
+      {/** State를 가진 컴포넌트
+       * state를 가진 컴포넌트는 다시 사용해도 독립적으로 사용
+       */}
+      <StateComp />
       <StateComp />
     </div>
   );
