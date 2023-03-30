@@ -7,6 +7,7 @@ import LoginComp from './components/LoginComp';
 import { LoginText } from './components/LoginComp';
 
 import TextComp from './components/TextComp';
+import OtherComp from './components/OtherComp';
 
 function App() {
   return (
@@ -24,6 +25,7 @@ function App() {
        */}
       <TextComp name="홍길동">반갑습니다</TextComp>
       <TextComp name="성춘향">환영합니다</TextComp>
+      <OtherComp name={123}/>
     </div>
   );
 }
