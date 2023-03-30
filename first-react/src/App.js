@@ -9,6 +9,9 @@ import { LoginText } from './components/LoginComp';
 import TextComp from './components/TextComp';
 import OtherComp from './components/OtherComp';
 
+import StateComp from './components/StateComp';
+
+
 /** 리액트에서 오류가 뜨는 이유 
  * 1. 존재하지 않는 컴포넌트 출력 
  * (컴포넌트를 만든 이후에 이름은 가능하면 바꾸지 말 것
@@ -34,6 +37,9 @@ function App() {
       <TextComp name="홍길동">반갑습니다</TextComp>
       <TextComp name="성춘향">환영합니다</TextComp>
       <OtherComp name={123}/>
+      
+      {/** State를 가진 컴포넌트 */}
+      <StateComp />
     </div>
   );
 }
