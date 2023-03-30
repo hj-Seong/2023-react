@@ -13,6 +13,10 @@ function App() {
       <MyComponent />
       {/* 만든 컴포넌트에 속성=값을 통해 값을 props전달 */}
       <LoginComp login={true} name="홍길동" />
+      {/**만든 컴포넌트사이에 글자를 적어서 전달 */}
+      {/** props의 children으로 전달 */}
+      {/** props값을 전달하지 않으면 undefined로 들어감 */}
+      <LoginComp>내용 전달</LoginComp>
     </div>
   );
 }

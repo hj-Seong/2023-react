@@ -9,12 +9,17 @@ class LoginComp extends Component {
         // : 배열이나 객체와같이 값이 여러개인 자료형을
         // 안에 있는 요소를 꺼내서 각각의 변수에 따로 저장하는 방식
         const prop = this.props;
-        const {login, name} = this.props;
+        // 객체의 속성이름과 동일하게 적어서 할당가능
+        const {login, name, children} = this.props;
+        console.log(prop);
         console.log(prop.login);
         console.log(login);
+        console.log(name);
         // const login = true;
         return (
             <div>
+                <h1>{name}</h1>
+                <p>{children}</p>
                 { 
                     login ?
                     <LoginText />
