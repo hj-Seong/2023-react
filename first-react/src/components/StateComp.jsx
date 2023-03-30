@@ -21,6 +21,7 @@ class StateComp extends Component {
         // this.state의 값을 비구조화 할당을 통해 사용
         const {number, name} = this.state;
         let count = 0;
+
         // return의 html안에서 직접 불러와서 사용
         return(
             <div>
@@ -43,7 +44,30 @@ class StateComp extends Component {
                     count+1
                 </button>
                 {/** 버튼을 눌렀을때 number 값이 -1씩 감소 */}
+                <button
+                    onClick={()=>{ 
+                        // 하나의 이벤트에서 setState를 여러번 부를경우
+                        // 원하지 않는 값으로 나올수 있다
+                        // -1을 두번해서 -2가 되길 바랬지만 -1이 한번만 됨
+                        this.setState({number:number-1});
+                        this.setState({number:number-1});
+
+                        // 이전에 있던 state값을 prevState로 들고와서 수정
+                        // 값이 바뀐 후에 들고오기에 동기적으로 값이 수정
+                        // ()=>()의 형태로 사용하는 이유 : return 으로 객체 전달하기 위함
+                        // (prevState)=>({state속성:값})
+                        this.setState((prevState)=>({number:prevState.number-1}))
+                    }}
+                >
+                    -1
+                </button>
+
                 {/** 버튼을 눌렀을때 number 값이 0이 됨 */}
+                <button
+                    onClick={()=>{ this.setState( {number : 0} ) }}
+                >
+                    0
+                </button>
             </div>
         )
     }
