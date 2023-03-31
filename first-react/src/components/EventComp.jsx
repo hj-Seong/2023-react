@@ -64,6 +64,10 @@ export class EventComp extends Component {
     console.log(this.state.name);
   }
 
+  changeName = () => {
+    this.setState({name:"성춘향"});
+  }
+
 
   render() {
     // render안에서 this = EventComp;
