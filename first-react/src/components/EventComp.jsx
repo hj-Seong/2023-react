@@ -45,11 +45,23 @@ export class EventComp extends Component {
   }
 
   // this.setState통해서 컬러값수정
-  changeColor(){
-    // e.type을 통해서 setState에 값 다르게 넣을수 있습니다
+  changeColor(e){
+    // e : 이벤트 객체를 들고와서 e.type을 통해서 이벤트 구분가능
+    // 이벤트의type에 따라서 setState에 값 다르게 넣을수있습니다
     // onMouseLeave에 changeColor를 추가하여 
     // onMouseLeave이벤트가 발생했을때는 color:""
-    this.setState({color: "red"});
+    if(e.type ==="mouseenter"){
+      this.setState({color: "red"});
+    } else if (e.type ==="mouseleave") {
+      this.setState({color:""})
+    }
+    console.log(e.type);
+  }
+  // 화살표 함수를 가지는 메소드
+  // 메소드 이름에 화살표 함수 작성
+  arrowPrint = () => {
+    console.log("이벤트 실행");
+    console.log(this.state.name);
   }
 
 
@@ -141,10 +153,35 @@ export class EventComp extends Component {
          */}
         <p 
           onMouseEnter={ this.changeColor }
+          onMouseLeave={ this.changeColor }
           style = {{color : this.state.color}}
         > 
           p태그에 마우스를 올리면 글자를 빨간색으로 바꾸기
         </p>
+
+        {/** 화살표함수로 메소드 만들어서 사용하기 */}
+        <button
+          onClick={ ()=>{
+            console.log("이벤트 실행");
+            console.log(this.state.name);
+          }} 
+        >
+          화살표 함수를 사용한 이벤트
+        </button>
+        <button
+          onClick={ this.arrowPrint } 
+        >
+          화살표 함수를 사용한 이벤트
+        </button>
+        {/** 화살표 함수를 이용해서
+         * 버튼을 클릭했을때 name값을 성춘향으로 바꾸기
+         */}
+        <button
+          onClick={ this.changeName } 
+        >
+          {name}
+        </button>
+
       </div>
     )
   }
