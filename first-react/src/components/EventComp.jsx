@@ -1,10 +1,37 @@
 import React, { Component } from 'react'
 
 export class EventComp extends Component {
+  // state 작성
+  constructor(props) {
+    super(props);
+    this.state = {
+      name: "홍길동"
+    }
+
+    // 메소드에 .bind로 묶어서 this 전달
+                      // 아래 this.printEvent는 작성한 메소드
+                      // 그 메소드에 .bind(this)로 연결
+    this.printEvent = this.printEvent.bind(this);
+    //this.printEvent 이름
+    // 참고) let num = 0; num = num+1; >> num의 결과 :1 
+
+  }
+
+  // 이벤트안에서 작성한 함수 그대로 들고와서 사용할수 있다
+  // render에서 사용한 값을 쓸수 없다
+  // this.state.name을 통해서 접근
+  // 메소드에 바로 bind를 통해서 this를 묶어줄 수 없다
+  // 메소드만 만들어서 바로 사용하면 this를 찾지못해서 오류
+  // >> construcotr에서 bind로 묶어서 사용
+  printEvent(){
+    console.log("이벤트 출력");
+    console.log(this.state.name);
+  }
+
   render() {
     // render안에서 this = EventComp;
     // this.state는 construct의 속성값
-    // const {} = this.state;
+    const {name} = this.state;
 
     return (
         // 이벤트를 위한 버튼 작성
@@ -33,6 +60,39 @@ export class EventComp extends Component {
         >
             익명함수를 사용해서 이벤트 실행
         </button>
+
+        <h3>이벤트의 함수(메서드)를 따로 작성하는 방법</h3>
+        <p>
+            버튼을 눌렀을때 console.log(이벤트 출력)
+            this.state.name "홍길동"을  출력
+        </p>
+        <button
+          onClick={function(){
+            console.log("이벤트 출력");
+            // name값을 render에서 this.state값을 가져와서
+            // this를 연결하지않아도 사용가능
+            console.log(name);
+          }.bind(this)
+        }
+        >
+          메소드를 사용한 이벤트
+        </button>
+        <button
+          // 작성한 메소드를 들고올때 this.를 통해 가져옴
+          onClick={this.printEvent}
+        >
+          메소드를 사용한 이벤트
+        </button>
+
+        {/** 이벤트 : 메소드 만들기 실습 */}
+        <p>
+          버튼을 누르면 state의 adrress 부산을 출력하고
+          console.log를 이용하여 이벤트 완료 출력
+        </p>
+        <button>
+          이벤트
+        </button>
+
       </div>
     )
   }
