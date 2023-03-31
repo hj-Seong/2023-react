@@ -9,7 +9,9 @@ export class EventComp extends Component {
       adrress : "부산",
       toggle : true,
       color : "",
-      input : ""
+      input : "",
+      inputNickname :"",
+      inputBook :""
     }
 
     // 메소드에 .bind로 묶어서 this 전달
@@ -67,6 +69,14 @@ export class EventComp extends Component {
 
   changeName = () => {
     this.setState({name:"성춘향"});
+  }
+
+  // onChange 공용메소드
+  onInputChange = (e)=>{
+    // inputNickname을 그대로 사용 > inputNickname에만 값이 들어감
+    // e.target.name : name속성값을 가져와서 사용
+    // 변수값을 사용할려면 [] 사용가능
+    this.setState({[e.target.name] : e.target.value})
   }
 
 
@@ -199,6 +209,21 @@ export class EventComp extends Component {
             // 바로 state에 접근해서 값을 출력하면 이전값이 나온다
             console.log("input",this.state.input);
           }}
+        />
+
+        {/** change 공용메소드(함수) 만들기 : 사용하지않아도 상관x */}
+        <h3>input 2개에서 값 받아오기</h3>
+        <p>inputNickname의 값 : {this.state.inputNickname} </p>
+        <input 
+          name='inputNickname' // state의 속성이름과 동일
+          type="text"
+          onChange={ this.onInputChange }
+        />
+        <p>inputBook의 값 : {this.state.inputBook}</p>
+        <input 
+          name='inputBook'
+          type="text"
+          onChange={ this.onInputChange }
         />
 
       </div>
