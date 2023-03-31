@@ -8,7 +8,8 @@ export class EventComp extends Component {
       name: "홍길동",
       adrress : "부산",
       toggle : true,
-      color : ""
+      color : "",
+      input : ""
     }
 
     // 메소드에 .bind로 묶어서 this 전달
@@ -185,6 +186,20 @@ export class EventComp extends Component {
         >
           {name}
         </button>
+
+        {/** form - input 태그의 값 사용하기 */}
+        <h3>input태그에서 값을 가져올 state를 onChange를 사용해서 수정</h3>
+        <p>{this.state.input}</p>
+        <input 
+          type="text"
+          onChange={(e)=>{
+            console.log(e.target.value)
+            this.setState({input : e.target.value})
+            // setState는 비동기로 움직임으로
+            // 바로 state에 접근해서 값을 출력하면 이전값이 나온다
+            console.log("input",this.state.input);
+          }}
+        />
 
       </div>
     )
