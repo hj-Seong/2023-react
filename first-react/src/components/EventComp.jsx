@@ -5,7 +5,9 @@ export class EventComp extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      name: "홍길동"
+      name: "홍길동",
+      adrress : "부산",
+      toggle : true
     }
 
     // 메소드에 .bind로 묶어서 this 전달
@@ -15,6 +17,8 @@ export class EventComp extends Component {
     //this.printEvent 이름
     // 참고) let num = 0; num = num+1; >> num의 결과 :1 
 
+    this.printAdrress = this.printAdrress.bind(this);
+    this.setToggle = this.setToggle.bind(this);
   }
 
   // 이벤트안에서 작성한 함수 그대로 들고와서 사용할수 있다
@@ -27,6 +31,17 @@ export class EventComp extends Component {
     console.log("이벤트 출력");
     console.log(this.state.name);
   }
+
+  printAdrress(e){
+    console.log(this.state.adrress);
+    console.log(e.type,"이벤트 완료");
+  }
+
+  // this.setState사용해서 값수정
+  setToggle(){
+    this.setState({toggle: !this.state.toggle})
+  }
+
 
   render() {
     // render안에서 this = EventComp;
@@ -89,10 +104,27 @@ export class EventComp extends Component {
           버튼을 누르면 state의 adrress 부산을 출력하고
           console.log를 이용하여 이벤트 완료 출력
         </p>
-        <button>
+        <button
+         onClick={this.printAdrress}
+        >
           이벤트
         </button>
 
+        {/** this.setState를 사용하는 메소드 */}
+        <button
+          onClick={function(){
+            this.setState({toggle: !this.state.toggle})
+          }.bind(this)
+        }
+        >
+          {this.state.toggle ? "on" : "off"}
+        </button>
+
+        <button
+          onClick={this.setToggle}
+        >
+          {this.state.toggle ? "on" : "off"}
+        </button>
       </div>
     )
   }
