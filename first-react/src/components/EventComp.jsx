@@ -7,7 +7,8 @@ export class EventComp extends Component {
     this.state = {
       name: "홍길동",
       adrress : "부산",
-      toggle : true
+      toggle : true,
+      color : ""
     }
 
     // 메소드에 .bind로 묶어서 this 전달
@@ -19,6 +20,7 @@ export class EventComp extends Component {
 
     this.printAdrress = this.printAdrress.bind(this);
     this.setToggle = this.setToggle.bind(this);
+    this.changeColor = this.changeColor.bind(this);
   }
 
   // 이벤트안에서 작성한 함수 그대로 들고와서 사용할수 있다
@@ -40,6 +42,11 @@ export class EventComp extends Component {
   // this.setState사용해서 값수정
   setToggle(){
     this.setState({toggle: !this.state.toggle})
+  }
+
+  // this.setState통해서 컬러값수정
+  changeColor(){
+    this.setState({color: "red"});
   }
 
 
