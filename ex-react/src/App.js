@@ -3,6 +3,8 @@ import PropsComp from './components/PropsComp';
 import CountComp from './components/CountComp';
 import CountPropsComp from './components/CountPropsComp';
 
+import LoginComp from './components/LoginComp';
+
 function App() {
   return (
     <div className="App">
