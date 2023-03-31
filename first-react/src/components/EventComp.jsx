@@ -46,6 +46,9 @@ export class EventComp extends Component {
 
   // this.setState통해서 컬러값수정
   changeColor(){
+    // e.type을 통해서 setState에 값 다르게 넣을수 있습니다
+    // onMouseLeave에 changeColor를 추가하여 
+    // onMouseLeave이벤트가 발생했을때는 color:""
     this.setState({color: "red"});
   }
 
