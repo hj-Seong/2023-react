@@ -9,7 +9,10 @@ export class MapComp extends Component {
         students : [
             {id:1, name:"홍길동"},
             {id:2, name:"성춘향"},
-            {id:3, name:"Jhon"}]
+            {id:3, name:"Jhon"},
+            {id:4, name:"흥부"}
+        ],
+        inputText : "" //onChange이용해서 input의value값 가져옴
     };
   }
 
@@ -33,9 +36,95 @@ export class MapComp extends Component {
         <ul>
             {this.state.names.map((name,index)=><li key={index}> <span>이름:</span> {name}</li>)}
         </ul>
+        {/** input태그를 이용해서 state.students에 추가
+         * 1. input의 값을 저장할 state.inputText 변수작성
+         * 2. onChange통해서 값을 받아옴(state.inputText)
+         * 3. 버튼을 클릭했을때 state.students에 추가
+        */}
+        <input 
+            type="text"
+            // inputText에 값을 저장
+            onChange={(e)=>{this.setState({inputText : e.target.value})}}
+        />
+        <button
+            // 버튼을 클릭했을때 state.students에 {id:4, name:""} 추가 
+            onClick={()=>{
+                // 리액트는 state값이 바뀔때 화면 업데이트
+                // 1. state.students에 배열의 요소를 추가하는 방법
+                // 1) push : 기존의 배열에 추가
+                // 2) concat : 새로운 배열에 추가후 return
+
+                // push를 이용해서 직접접근해서 수정할수 있지만
+                // 화면에 바로 업데이트 되지않는다
+                // >> button의 click이벤트 발생시 업데이트 안됨
+                // >> onChange 이벤트 발생시 업데이트 됨
+                // setState() 가 호출되면 화면 업데이트
+                /* push는 잘 사용하지않는다
+                this.state.students.push(
+                    {id:4,name:this.state.inputText}
+                )
+                */
+
+                // concat을 이용해서 새로운 배열을 만든 후
+                // setState를 이용하여 추가
+                // id 값은 중복 되지 않게 사용. 
+                // 1씩 증가 > 배열의 길이값 1씩 증가
+                const newStudents = this.state.students.concat(
+                    {
+                        id : this.state.students.length+1, 
+                        name:this.state.inputText
+                    }
+                )
+                this.setState({students:newStudents});
+
+            }}
+        >
+            이름 추가
+        </button>
+
+
+        {/** table에 배열의 객체 값 출력 */}
+        <table>
+            <tbody>
+                <tr>
+                    <td>아이디</td>
+                    <td>이름</td>
+                </tr>
+                {
+                    this.state.students.map((student)=>
+                        <tr key={student.id}>
+                            <td>{student.id}</td>
+                            <td>{student.name}</td>
+                        </tr>)
+                }
+                {
+                    // 컴포넌트의 props 값을 이용해서 값전달가능
+                    this.state.students.map((student)=>
+                        <TableComp 
+                            key={student.id} 
+                            name={student.name} 
+                            id={student.id}
+                        />)
+                }
+            </tbody>
+        </table>
       </div>
     )
   }
 }
 
 export default MapComp
+
+/* map에서 사용할 컴포넌트 */
+class TableComp extends Component {
+    // 호출하는 컴포넌트(부모)에서 값을 받아서 씀 : props
+    render(){
+        const {id, name} = this.props
+        return (
+            <tr>
+                <td>{id}</td>
+                <td>{name}</td>
+            </tr>
+        );
+    }
+}
