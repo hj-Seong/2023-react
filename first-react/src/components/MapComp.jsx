@@ -16,6 +16,44 @@ export class MapComp extends Component {
     };
   }
 
+  addStudent = ()=>{
+    // 리액트는 state값이 바뀔때 화면 업데이트
+    // 1. state.students에 배열의 요소를 추가하는 방법
+    // 1) push : 기존의 배열에 추가
+    // 2) concat : 새로운 배열에 추가후 return
+
+    // push를 이용해서 직접접근해서 수정할수 있지만
+    // 화면에 바로 업데이트 되지않는다
+    // >> button의 click이벤트 발생시 업데이트 안됨
+    // >> onChange 이벤트 발생시 업데이트 됨
+    // setState() 가 호출되면 화면 업데이트
+    /* push는 잘 사용하지않는다
+    this.state.students.push(
+        {id:4,name:this.state.inputText}
+    )
+    */
+
+    // concat을 이용해서 새로운 배열을 만든 후
+    // setState를 이용하여 추가
+    // id 값은 중복 되지 않게 사용. 
+    // 1씩 증가 > 배열의 길이값 1씩 증가
+    const newStudents = this.state.students.concat(
+        {
+            id : this.state.students.length+1, 
+            name:this.state.inputText
+        }
+    )
+    this.setState({students:newStudents});
+
+    // input태그에 value={} state값으로 연결하면 
+    // setState를 통해서 값을 수정할수 있다.
+    // 접근하는 state의 이름이 다르면 따로 적어도 괜찮다
+    // 아래와 같이 함께 적어도 된다.
+    // this.setState({students:newStudents, inputText:""});
+    this.setState({inputText :""})
+
+}
+
   render() {
     // 배열의 map 메소드 확인
     const array = [1,2,3,4];
@@ -45,39 +83,11 @@ export class MapComp extends Component {
             type="text"
             // inputText에 값을 저장
             onChange={(e)=>{this.setState({inputText : e.target.value})}}
+            value={this.state.inputText}
         />
         <button
             // 버튼을 클릭했을때 state.students에 {id:4, name:""} 추가 
-            onClick={()=>{
-                // 리액트는 state값이 바뀔때 화면 업데이트
-                // 1. state.students에 배열의 요소를 추가하는 방법
-                // 1) push : 기존의 배열에 추가
-                // 2) concat : 새로운 배열에 추가후 return
-
-                // push를 이용해서 직접접근해서 수정할수 있지만
-                // 화면에 바로 업데이트 되지않는다
-                // >> button의 click이벤트 발생시 업데이트 안됨
-                // >> onChange 이벤트 발생시 업데이트 됨
-                // setState() 가 호출되면 화면 업데이트
-                /* push는 잘 사용하지않는다
-                this.state.students.push(
-                    {id:4,name:this.state.inputText}
-                )
-                */
-
-                // concat을 이용해서 새로운 배열을 만든 후
-                // setState를 이용하여 추가
-                // id 값은 중복 되지 않게 사용. 
-                // 1씩 증가 > 배열의 길이값 1씩 증가
-                const newStudents = this.state.students.concat(
-                    {
-                        id : this.state.students.length+1, 
-                        name:this.state.inputText
-                    }
-                )
-                this.setState({students:newStudents});
-
-            }}
+            onClick={this.addStudent}
         >
             이름 추가
         </button>
@@ -94,7 +104,21 @@ export class MapComp extends Component {
                     this.state.students.map((student)=>
                         <tr key={student.id}>
                             <td>{student.id}</td>
-                            <td>{student.name}</td>
+                            <td 
+                                // 이름을 눌렀을때 이름을 가진 객체를 배열에서 삭제
+                                onClick={()=>{
+                                    // 1. 배열에서 값을 제거하는 방법
+                                    // 1) pop, splice .. > 원래값에 제거 X
+                                    // 2) 값을 제거하고 새로운 배열 생성 : filter
+                                    // filter(걸러냄) 
+                                    // : (value)=>return 참 일때 value값을 return 한 새 배열에 추가
+                                    const newStudents = this.state.students.filter((s)=>s.id !== student.id);
+                                    this.setState({students : newStudents})
+
+                                }} 
+                            >
+                                {student.name}
+                            </td>
                         </tr>)
                 }
                 {
