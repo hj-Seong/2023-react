@@ -5,6 +5,8 @@ import CountPropsComp from './components/CountPropsComp';
 
 import LoginComp from './components/LoginComp';
 
+import MemoComp from './components/MemoComp';
+
 function App() {
   return (
     <div className="App">
@@ -29,7 +31,7 @@ function App() {
        */}
       <LoginComp />
 
-      {/** 기록장 작성
+      {/** 기록장 작성 >> css 추가해서 디자인
        * memoList : [
        *      {id:1, memo:"기록", time:new Date()},
        *      {id:2, memo:"연습", time:new Date()}
