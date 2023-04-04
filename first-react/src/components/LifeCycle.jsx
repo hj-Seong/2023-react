@@ -8,6 +8,9 @@ export class LifeCycle extends Component {
         count : 0,
         date : new Date()
     }
+    // 속성 또는 필드라고 이야기
+    // 현재 컴포넌트에서 전역으로 사용하고싶을 때
+    this.timerID = "";
   }
 
   // 라이프 사이클 메소드 - 마운트 되었을때: 시작했을 때 실행
