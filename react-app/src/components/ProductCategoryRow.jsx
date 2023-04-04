@@ -3,7 +3,9 @@ import React, { Component } from 'react'
 export class ProductCategoryRow extends Component {
   render() {
     return (
-      <div>ProductCategoryRow</div>
+        <tr>
+            <th colSpan={2}>Sport Goods</th>
+        </tr>
     )
   }
 }
