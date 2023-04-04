@@ -11,9 +11,17 @@ export class SearchBar extends Component {
       <div>
         <input type="text" placeholder='Search...' />
         <br />
-        <input type="checkbox" checked={isOnlyStock} />
-        <label htmlFor="" 
-        onClick={toggleStock}
+        {/** checkbox/radio의 check값을 가져올때 readOnly을 이용해서
+         * 바뀌는 값을 출력하는 용도로 사용할수 있다
+         */}
+        <input type="checkbox" 
+          checked={isOnlyStock} 
+          readOnly 
+          onClick={toggleStock}
+        />
+        <label 
+          htmlFor="" 
+          onClick={toggleStock}
         >
           Only show products on stock
         </label>
