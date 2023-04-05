@@ -19,6 +19,8 @@ import MapComp from './components/MapComp';
 import LifeCycle from './components/LifeCycle';
 
 import ArrowComponent from './components/ArrowComponent';
+import ArrowTest from './components/ArrowTest';
+import ArrowState from './components/ArrowState';
 
 /** 리액트에서 오류가 뜨는 이유 
  * 1. 존재하지 않는 컴포넌트 출력 
@@ -74,7 +76,12 @@ function App() {
        * check={true} : check값이 true일때 name 출력
        * children="환영합니다" : p 태그로 출력 
        */}
-      <ArrowTest  ></ArrowTest>
+      <ArrowTest name="green" check={true}>
+        환영합니다
+      </ArrowTest>
+
+      {/** 함수형 컴포넌트의 state 사용 */}
+      <ArrowState />
     </div>
   );
 }
