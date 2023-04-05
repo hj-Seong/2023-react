@@ -1,4 +1,5 @@
 import React, { Component } from 'react'
+import printC from '../api/clock';
 
 // 클래스형 컴포넌트에서 라이프 사이클 작성
 export class LifeCycle extends Component {
@@ -60,7 +61,7 @@ export class LifeCycle extends Component {
             +1
         </button>
         <hr />
-        <h3>시계 : {this.printClock(this.state.date)}</h3>
+        <h3>시계 : {this.printClock(this.state.date)} {printC(this.state.date)}</h3>
       </div>
     )
   }
