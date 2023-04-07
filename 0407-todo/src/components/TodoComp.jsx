@@ -1,4 +1,8 @@
 import { useState } from "react";
+// 가져온 css는 모든 컴포넌트에 공유 
+import './TodoComp.css'
+
+import TodoItem from "./TodoItem";
 
 // TodoComp에서 전역으로 사용할 변수
 let id = 3;
@@ -19,6 +23,11 @@ const TodoComp = () => {
     );
     // input의 값을 받아와서 넣을 공간
     const [inputTodo, setInputTodo] = useState("");
+    // 현재의 버튼 상태를 알려주기위해 useState 작성
+    // all 일때, 전체 보여줌
+    // today 일때, 오늘 날짜로 보여줌
+    const [btnState, setBtnState] = useState("all");
+
 
     
     // 이벤트 메소드
@@ -65,7 +74,18 @@ const TodoComp = () => {
         setTodoList(newTodoList);
     }
 
-
+    // 오늘날짜의 todo만 들어있는 리스트
+    const todayTodo = todoList.filter((todo)=>{
+        // 날짜가 오늘날짜와 같다면 showTodo에 넣기
+        // todo.date로 바로 비교시 객체끼리비교
+        // 그 안에 있는Month와 Date이용하여 비교
+        const today = new Date();
+        return todo.date.getMonth() === today.getMonth()
+                && todo.date.getDate() === today.getDate()
+    })
+    
+    // 화면에 출력되는 todoList 
+    const showTodo = btnState === "all" ? todoList : todayTodo
 
 
 
@@ -86,28 +106,31 @@ const TodoComp = () => {
                 <input type="submit" value="+" />
             </form>
             <hr />
+            <button
+                onClick={()=>{setBtnState("all")}}
+                className={ btnState==="all" ? "on" : ""}
+            >
+                모든 할일
+            </button>
+            <button
+                onClick={()=>{setBtnState("today")}}
+                className={ btnState==="today" ? "on" :"" }
+            >
+                오늘 할일
+            </button>
             <ul>
                 {
                     // 배열을 사용할때 map을 사용해서 출력
-                    todoList.map( (todo)=>(
-                        <li key={todo.id}>
-                            <h3>
-                                {(todo.date.getMonth()+1)+"월"+todo.date.getDate()+"일"} 
-                            </h3>
-                            <input 
-                                type="checkbox" 
-                                checked={todo.checked} readOnly
-                                onClick={()=>{ checkedTodo(todo.id)}}
-                            />
-                            {todo.todo}
-                            <button
-                                onClick={ ()=>{ deleteTodo(todo.id) }}
-                            >
-                                X
-                            </button>
-                        </li>
+                    showTodo.map( (todo)=>(
+                    <TodoItem
+                        key={todo.id}
+                        todo={todo}
+                        checkedTodo={checkedTodo}
+                        deleteTodo={deleteTodo}
+                    />
                     ) )
                 }
+                
             </ul>
         </div>
     )
