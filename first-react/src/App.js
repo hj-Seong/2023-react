@@ -23,6 +23,7 @@ import ArrowTest from './components/ArrowTest';
 import ArrowState from './components/ArrowState';
 
 import EffectHook from './components/EffectHook';
+import EffectHook2 from './components/EffectHook2';
 
 /** 리액트에서 오류가 뜨는 이유 
  * 1. 존재하지 않는 컴포넌트 출력 
@@ -86,7 +87,10 @@ function App() {
       <ArrowState />
 
       {/** 함수형 컴포넌트의 hook 사용 */}
-      <EffectHook />
+      {/* <EffectHook /> */}
+
+      {/** 함수형 컴포넌트의 useEffect응용 */}
+      <EffectHook2 />
     </div>
   );
 }
