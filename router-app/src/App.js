@@ -6,6 +6,7 @@ import { Routes, Route } from 'react-router-dom';
 import Home from './page/Home';
 import About from './page/About';
 import Story from './page/Story';
+import Story2 from './page/Story2';
 
 function App() {
   return (
@@ -27,11 +28,14 @@ function App() {
        * 값은 브라우저에 주소창에 입력했을때 값이 들어감
       */}
       <Route path='/story/:value' element={ <Story /> } />
-      {/** <Story />를 복사하여 <Story2 /> 로 수정하여 사용 
+      {/** <Story />를 복사하여 <Story2 /> 로 수정하여 사용
+       * path='/story2/  ~~~  '로 연결
        * URL 파라미터 이름을 name로 작성
        * URL 파라미터로 전달할 값은 green 으로 작성해서
        * useParams 이용해서 화면서 출력
+       * >> 브라우저의 주소창에 /story2/green 입력 
       */}
+      <Route path='/story2/:name' element={<Story2 />} />
 
     </Routes>
   );
