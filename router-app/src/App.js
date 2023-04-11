@@ -7,6 +7,7 @@ import Home from './page/Home';
 import About from './page/About';
 import Story from './page/Story';
 import Story2 from './page/Story2';
+import Error from './page/Error';
 
 function App() {
   return (
@@ -36,6 +37,12 @@ function App() {
        * >> 브라우저의 주소창에 /story2/green 입력 
       */}
       <Route path='/story2/:name' element={<Story2 />} />
+      
+      {/** path에 *을 넣으면 지정된 주소 외에는 전부
+       * element로 연결된 컴포넌트가 출력된다
+       * 위의 작성한 주소와 헷갈리지않게 아래에 두는 편
+       */}
+      <Route path='*' element={<Error />} />
 
     </Routes>
   );

@@ -4,6 +4,8 @@ import React from 'react'
 import { Link } from 'react-router-dom'
 
 export default function Home() {
+  const fruit = "banana";
+  const fruits = ["apple","orange","peach"];
   return (
     <div>
         <h1>Home</h1>
@@ -11,7 +13,19 @@ export default function Home() {
         {/** a태그 대신 컴포넌트의 주소로 이동 */}
         <Link to="/about">About</Link>
         {/** to의 속성값으로 자바스크립의 문자열 가능 */}
-        <Link to={"/story"}>Story</Link>
+        <Link to={`/story/${fruit}`}>Story</Link>
+        
+        <hr />
+        {/** map을 이용해서 배열의값을 Link의 to 주소값으로 사용 */
+          fruits.map((f, i)=>(
+            <Link to={`/story/${f}`} key={i}> [{f}Story] </Link>
+          ))
+        }
+        <hr />
+        {/** fruits의 map을 사용하여
+         * /story2/apple, /story2/orange, story2/peach 로 이동하는
+         * Link 작성
+         */}
     </div>
   )
 }
