@@ -5,6 +5,7 @@ import { Routes, Route } from 'react-router-dom';
 // 각각의 페이지(하나에 주소에 보일 컴포넌트)
 import Home from './page/Home';
 import About from './page/About';
+import Story from './page/Story';
 
 function App() {
   return (
@@ -17,6 +18,12 @@ function App() {
        */}
       <Route path='/' element={<Home />} />
       <Route path='/about' element={ <About /> } />
+      {/** <Story /> 페이지 컴포넌트를 만들어서, '/story' 주소로 연결 
+       * 확인은 주소창에 http://localhost:3000/story 로 확인
+       * 위에 작성했던 것과 동일
+      */}
+      <Route path='/story' element={ <Story /> } />
+
     </Routes>
   );
 }

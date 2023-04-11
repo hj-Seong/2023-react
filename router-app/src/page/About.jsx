@@ -5,6 +5,7 @@ export default function About() {
     <div>
         <h1>About</h1>
         <p>About 페이지입니다</p>
+        {/** home과 story로 이동하는Link 작성 */}
     </div>
   )
 }
