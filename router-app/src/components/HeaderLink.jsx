@@ -1,6 +1,7 @@
 import React from 'react'
+import '../css/headerlink.css'
 
-import { Link } from 'react-router-dom'
+import { Link, NavLink } from 'react-router-dom'
 
 // 링크들을 모아서 헤더에 고정하기
 export default function HeaderLink() {
@@ -8,12 +9,34 @@ export default function HeaderLink() {
   return (
     <div>
         {/** a태그 대신 컴포넌트의 주소로 이동 */}
-        <Link to="/about">About</Link>
+        <NavLink 
+          className={({isActive})=>isActive?"link-style":undefined}
+          to="/about"
+        >
+          About
+        </NavLink>
         {/** to의 속성값으로 자바스크립의 문자열 가능 */}
-        <Link to={`/story/${fruit}`}>Story</Link>
-        <Link to="/articles">Articles</Link>
-        <Link to="/story2">Story2List</Link>
-        <Link to="/navigate"> Navigate</Link>
+        <NavLink to={`/story/${fruit}`}
+          className={({isActive})=>isActive?"link-style":undefined}
+        >
+          Story
+        </NavLink>
+        <NavLink to="/articles"
+        className={({isActive})=>isActive?"link-style":undefined}
+        >
+          Articles
+        </NavLink>
+        <NavLink to="/story2"
+        className={({isActive})=>isActive?"link-style":undefined}
+        >
+          Story2List
+        </NavLink>
+        <NavLink to="/navigate"
+          className={({isActive})=>isActive?"link-style":undefined}
+          end // 주소가 완전히 일치할때만 class이름 추가
+        > 
+        Navigate
+        </NavLink>
     </div>
   )
 }
