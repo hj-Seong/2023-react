@@ -38,11 +38,21 @@ function App() {
        * useParams 이용해서 화면서 출력
        * >> 브라우저의 주소창에 /story2/green 입력 
       */}
-      <Route path='/story2/:name' element={<Story2 />} />
+      {/**
+       * page 폴더에 Story2List.jsx를 만들고
+       * fruit 배열을 들고와서 Link 작성, 
+       * Link를 클릭했을때 Story2가 보일 수 있게 작성하세요
+       * **주소창에 '/story2'를 입력해서 들어간후 확인**
+       */}
+      <Route path='/story2' >
+        <Route path='/story2/:name' element={<Story2 />} />
+      </Route>
 
-      
-      <Route path='/articles' element={<Articles />} />
-      <Route path='/articles/:id' element={<Article />}/>
+      {/** 관련된 페이지는 주소로 분류해서 사용가능 */}
+      <Route path='/articles' element={<Articles />} >
+        {/** 중첩 라우터 - Outlet과 함께 사용 */}
+        <Route path=':id' element={<Article />}/>
+      </Route>
 
       
       {/** path에 *을 넣으면 지정된 주소 외에는 전부
