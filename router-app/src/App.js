@@ -8,6 +8,8 @@ import About from './page/About';
 import Story from './page/Story';
 import Story2 from './page/Story2';
 import Error from './page/Error';
+import Articles from './page/Articles';
+import Article from './page/Article';
 
 function App() {
   return (
@@ -37,6 +39,11 @@ function App() {
        * >> 브라우저의 주소창에 /story2/green 입력 
       */}
       <Route path='/story2/:name' element={<Story2 />} />
+
+      
+      <Route path='/articles' element={<Articles />} />
+      <Route path='/articles/:id' element={<Article />}/>
+
       
       {/** path에 *을 넣으면 지정된 주소 외에는 전부
        * element로 연결된 컴포넌트가 출력된다
