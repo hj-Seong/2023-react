@@ -13,6 +13,7 @@ export default function HeaderLink() {
         <Link to={`/story/${fruit}`}>Story</Link>
         <Link to="/articles">Articles</Link>
         <Link to="/story2">Story2List</Link>
+        <Link to="/navigate"> Navigate</Link>
     </div>
   )
 }
