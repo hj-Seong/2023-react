@@ -10,7 +10,9 @@ import { useContext } from 'react';
 export default function Toolbar(props) {
   return (
     <div>
+        {/** 클래형 컴포넌트 */ }
         <ThemedButton />
+        {/** 함수형 컴포넌트 */}
         <MyButton />
     </div>
   )
@@ -29,7 +31,7 @@ class ThemedButton extends React.Component {
     }
 }
 
-function MyButton (props) {
+function MyButton () {
     // 함수형 컴포넌트에서 ThemeContext를 통해서 값 받아오기
     // useContext를 통해서 값을 받아올수 있다
     // useContext로 받아올 변수의 이름은 자율
@@ -42,19 +44,13 @@ function MyButton (props) {
     const context =  useContext(ThemeContext);
 
     // 객체로 전달된 값은 객체로 사용
+    // {name : "홍길동", login : true}
     const user = useContext(ObjectContext)
-    
-    // DataContext에서 작성한 value의 값
-    // {state : {name, login}, action :{set~,set~}}
-    const value = useContext(DataContext);
 
     return  <div> 
       <h3>{context}</h3>
         { 
           user && <button>{user.name}의 버튼입니다</button>
-        }
-        { 
-          value && <button>{value.state.name}의 버튼입니다</button>
         }
     </div>
 }
