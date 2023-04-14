@@ -3,14 +3,23 @@ import Toolbar from './components/Toolbar';
 
 // App에서 쓰기위해, 작성한 ThemeContext 호출
 import ThemeContext from './context/ThemeContext';
+import ObjectContext from './context/ObjectContext';
+import { DataProvider } from './context/DataContext';
 
 function App() {
   return (
     <div className="App">
       {/** 작성한 context를 값을 사용할 컴포넌트를 감싸서 사용 */}
       <ThemeContext.Provider value='light'>
-        <Toolbar/>
+        <ObjectContext.Provider value={ {name:"홍길동", login:true} }>
+          <Toolbar/>
+        </ObjectContext.Provider>
       </ThemeContext.Provider>
+
+      <DataProvider>
+        <Toolbar/>
+      </DataProvider>
+
     </div>
   );
 }

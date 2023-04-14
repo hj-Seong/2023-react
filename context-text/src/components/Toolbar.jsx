@@ -2,12 +2,15 @@ import React from 'react'
 // context의 값을 사용하고자 하는 공간에 
 // 작성한 ThemeContext 가져옴
 import ThemeContext from '../context/ThemeContext'
+import ObjectContext from '../context/ObjectContext';
+import DataContext from '../context/DataContext';
+
 import { useContext } from 'react';
 
 export default function Toolbar(props) {
   return (
     <div>
-        <ThemedButton theme={props.theme} />
+        <ThemedButton  />
     </div>
   )
 }
@@ -29,5 +32,21 @@ function MyButton (props) {
     // useContext를 통해서 값을 받아올수 있다
     // useContext로 받아올 변수의 이름은 자율
     const context =  useContext(ThemeContext);
-    return <button>{context}의 버튼입니다</button>
+    // 객체로 전달된 값은 객체로 사용
+    const user = useContext(ObjectContext)
+    
+    // DataContext에서 작성한 value의 값
+    // {state : {name, login}, action :{set~,set~}}
+    const value = useContext(DataContext);
+    console.log(value)
+
+    return  <div> { 
+          user && <button>{user.name}의 버튼입니다</button>
+        }
+        { 
+          value !=null
+           ? <button>{value.state.name}의 버튼입니다</button>
+          : ""
+        }
+    </div>
 }
