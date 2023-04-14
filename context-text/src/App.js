@@ -35,6 +35,7 @@ function App() {
        * DataProvider 사용 */}
       <DataProvider>
         <DataBox/>
+        {/** <DataPrint /> 를 작성하여 화면에 출력 */}
       </DataProvider>
 
 

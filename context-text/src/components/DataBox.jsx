@@ -25,7 +25,7 @@ function DataText () {
     // 값일때는 true이므로 그 값 출력 
     return (
         <div>
-            {value && <h3>{value.state.name}</h3>}
+            {<h3>{value && value.state.name}</h3>}
             <input type="text"
                 onChange={(e)=>{setInput(e.target.value)}}
             />
