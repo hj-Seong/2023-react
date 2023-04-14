@@ -21,6 +21,9 @@ function App() {
         { /** DataProvider 값 확인 */}
         <Toolbar/>
       </DataProvider>
+      {/** ContextBox를 가져와서 ThemeContext를 이용하여
+       * blue값을 전달하기
+       */}
 
     </div>
   );
