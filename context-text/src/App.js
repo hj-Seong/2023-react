@@ -7,6 +7,7 @@ import ObjectContext from './context/ObjectContext';
 import { DataProvider } from './context/DataContext';
 import ContextBox from './components/ContextBox';
 import DataBox from './components/DataBox';
+import DataPrint from './components/DataPrint';
 
 // ObjectContext.Provider의 value값을 
 // 따로 변수에 저장해서 사용
@@ -36,6 +37,7 @@ function App() {
       <DataProvider>
         <DataBox/>
         {/** <DataPrint /> 를 작성하여 화면에 출력 */}
+        <DataPrint />
       </DataProvider>
 
 
