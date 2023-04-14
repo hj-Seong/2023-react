@@ -38,15 +38,13 @@ function MyButton (props) {
     // DataContext에서 작성한 value의 값
     // {state : {name, login}, action :{set~,set~}}
     const value = useContext(DataContext);
-    console.log(value)
 
-    return  <div> { 
+    return  <div> 
+        { 
           user && <button>{user.name}의 버튼입니다</button>
         }
         { 
-          value !=null
-           ? <button>{value.state.name}의 버튼입니다</button>
-          : ""
+          value && <button>{value.state.name}의 버튼입니다</button>
         }
     </div>
 }
