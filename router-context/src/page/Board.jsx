@@ -30,6 +30,9 @@ export default function Board() {
         {   // 화면이 먼저 화면에 렌더되고, useEffect 실행
             // 화면 상에서 나타나는 오류를 제거하고
             // useEffect로 이동
+            // boardData = undefined == false
+            // boardData = 값있음 == true
+            // >> 자동 형변환
             boardData && (
                 <div>
                     <h3>제목: {boardData.title}</h3>
