@@ -20,6 +20,13 @@ const DataProvider = ({children}) => {
                 content :"내용을 작성하였습니다",
                 date : "2023-04-14",
                 writer : "green"
+            },
+            { 
+                id : 3,
+                title : "세번째 게시물입니다",
+                content :"내용을 작성하였습니다",
+                date : "2023-04-17",
+                writer : "green"
             }
         ]
     )
