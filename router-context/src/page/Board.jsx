@@ -1,6 +1,8 @@
 import React, { useEffect } from 'react'
 import { useParams, useNavigate } from 'react-router-dom'
 
+// json 내용 대신에 
+// DataContext에 있는 boardlist 들고와서 화면에 출력하기
 import data from '../data/dummy.json'
 
 // id로 구분하기위해 board에 data의 내용이 필요함
