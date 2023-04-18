@@ -75,6 +75,12 @@ export default function Board() {
         >
           이 게시글 삭제
         </button>
+        <button
+        // navigate의 state를 이용하여 boardData객체를 전달
+          onClick={()=>{navigate('/board-modify-form', {state: boardData} )}}
+        >
+          이 게시글 수정하기
+        </button>
     </div>
   )
 }
