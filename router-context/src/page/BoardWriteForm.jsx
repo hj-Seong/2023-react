@@ -1,6 +1,12 @@
-import React, { useState } from 'react'
+import React, { useState, useContext } from 'react'
+
+import DataContext from '../context/DataContext';
+
+import { useNavigate } from 'react-router-dom'
 
 export default function BoardWriteForm() {
+  const navigate = useNavigate();
+
   // 사용자로 입력 받아올 공간을 useState로 작성
   // >> todoList에서 todo를 작성할 공간과 동일
   const [title, setTitle] = useState("");
@@ -15,8 +21,34 @@ export default function BoardWriteForm() {
   // 서버의 데이터베이스를 사용하지않고 자바스크립트로 값을 저장하고있기 때문 
 
 
+  // DataContext를 통해서 공용데이터 값, 메소드 들고오기
+  const value = useContext(DataContext);
+  const { state, action } = value;
+
+
   // 글 추가 메소드
-  const addBoard = () => {}
+  const addBoard = () => {
+    // 1. 어떤 형태로 값을 저장할지
+    const newBoard = {
+        id : state.id,
+        title : title,
+        content : content,
+        date : "2023-04-18",
+        writer: "익명"
+    }
+    // 1-1. id값을 1추가
+    action.setId(state.id+1);
+
+    // 2. 배열에 추가한 새로운 배열을 만들어서(concat)
+    const newBoardlist = state.boardlist.concat(newBoard);
+
+    // 3. set메소드를 통해 추가
+    action.setBoardlist(newBoardlist);
+    
+    // 내용이 추가된 후 그 내용을 확인하기 위해 
+    // BoardList로 이동
+    navigate('/boardlist');
+  }
 
 
   return (

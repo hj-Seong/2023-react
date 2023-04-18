@@ -31,10 +31,15 @@ const DataProvider = ({children}) => {
         ]
     )
 
+    // id 값을 전달하기위해 useState()로 작성
+    const [id, setId] = useState(4);
+
+
+
     // value에 담을 데이터 정리
     const value = {
-        state : { boardlist },
-        action : { setBoardlist }
+        state : { boardlist, id },
+        action : { setBoardlist, setId }
     }
     
     return <DataContext.Provider value={value}>

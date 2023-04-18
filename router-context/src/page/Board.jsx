@@ -15,8 +15,9 @@ export default function Board() {
 
   const {id} = useParams();
 
-  // Context의 값을 가져옴
-  const { state } = useContext(DataContext);
+  // Context의 값을 가져옴 
+  // 삭제를 위해 action속성도 가져옴
+  const { state, action } = useContext(DataContext);
   const {boardlist} = state;
 
   // 배열의 함수인 find 를 이용하여
@@ -35,6 +36,23 @@ export default function Board() {
     }
   },[])
 
+
+  // 게시물 삭제 메소드
+  const deleteBoard = () => {
+    // 1. 현재 id를 들고온다 > useParam을 통해 가져온 id들고온다
+    // 2. id와 동일한 객체를 제외한 새로운 배열을 만들다
+    // (filter)
+    // 일치 비교연산자 사용할때는 자료형까지 동일해야한다
+    const newBoardlist = boardlist.filter((board)=>(board.id !== Number(id)))
+
+    // 3. 새로운 배열을 set메소드를 통해 넣어준다
+    action.setBoardlist(newBoardlist);
+
+    // 삭제 이후에 boardlist로 이동
+    navigate('/boardlist');
+  }
+
+
   return (
     <div>
         {   // 화면이 먼저 화면에 렌더되고, useEffect 실행
@@ -52,7 +70,11 @@ export default function Board() {
                 </div>
             )
         }
-
+        <button
+          onClick={ deleteBoard }
+        >
+          이 게시글 삭제
+        </button>
     </div>
   )
 }
