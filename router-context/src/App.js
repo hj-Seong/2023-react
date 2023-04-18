@@ -6,6 +6,7 @@ import Layout from './page/Layout';
 import Board from './page/Board';
 
 import { DataProvider } from './context/DataContext';
+import BoardWriteForm from './page/BoardWriteForm';
 
 function App() {
   return (
@@ -16,6 +17,7 @@ function App() {
             <Route path='/' element={<Home/>}/>
             <Route path='/boardlist' element={<BoardList/>}/>
             <Route path='/boardlist/:id' element={<Board />}/>
+            <Route path='/boardwriteform' element={<BoardWriteForm />}/>
           </Route>
         </Routes>
       </DataProvider>
