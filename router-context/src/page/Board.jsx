@@ -97,7 +97,13 @@ export default function Board() {
                 </div>)
         }
         <hr />
-        <CommentComp />
+        { // 값을 넘길 형태가 객체로 주어져있으면 객체로 넘길수 있다
+          state.commentlist.map((comment)=>(
+            <CommentComp 
+              comment={comment}
+            />
+          ))
+        }
 
     </div>
   )
