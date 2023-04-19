@@ -86,6 +86,24 @@ export default function Board() {
     action.setCommentlist(newCommnetlist)
   }
 
+  // 코멘트를 삭제하기위한 메소드
+  const deleteComment = (cid) =>{
+    // 1. 삭제/수정을 할때는 값의 id(유일한값)을 통해 확인
+    // boardCommentlist의 각 객체에 cid가 있음
+    // >> map으로 객체를 하나씩 출력할때 cid값을 가져옴
+
+
+    // 2. filter를 통해서 id 값을 제외한 새로운 배열생성
+    // state.commentlist(전체배열)를 통해서 새로운 배열 생성!
+    const newCommentlist = state.commentlist.filter(
+      (comment)=>(comment.cid !== cid)
+    )
+
+    // 3. 그 배열을 set메소드를 통해 값 할당
+    action.setCommentlist(newCommentlist);
+
+  }
+
 
   return (
     <div>
@@ -146,6 +164,9 @@ export default function Board() {
             <CommentComp 
               key = {comment.cid}
               comment={comment}
+              // 메소드를 작성하여서 전달
+              // 메소드를 전달할때는 이름으로 전달한다
+              deleteComment={deleteComment}
             />
           ))
         }
