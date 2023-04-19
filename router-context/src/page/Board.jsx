@@ -7,6 +7,7 @@ import data from '../data/dummy.json'
 
 import { useContext } from 'react';
 import DataContext from '../context/DataContext';
+import CommentComp from '../components/CommentComp';
 
 // id로 구분하기위해 board에 data의 내용이 필요함
 export default function Board() {
@@ -43,7 +44,8 @@ export default function Board() {
     // 2. id와 동일한 객체를 제외한 새로운 배열을 만들다
     // (filter)
     // 일치 비교연산자 사용할때는 자료형까지 동일해야한다
-    const newBoardlist = boardlist.filter((board)=>(board.id !== Number(id)))
+    const newBoardlist = boardlist.filter(
+      (board)=>(board.id !== Number(id)))
 
     // 3. 새로운 배열을 set메소드를 통해 넣어준다
     action.setBoardlist(newBoardlist);
@@ -94,6 +96,8 @@ export default function Board() {
                   </button>
                 </div>)
         }
+        <hr />
+        <CommentComp />
 
     </div>
   )
