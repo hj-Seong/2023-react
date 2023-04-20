@@ -88,8 +88,8 @@ const DataProvider = ({children}) => {
 
     // value에 담을 데이터 정리
     const value = {
-        state : { boardlist, id, user, commentlist, cid },
-        action : { setBoardlist, setId, setUser, setCommentlist, cidCount }
+        state : { boardlist, id, user, commentlist, cid, likelist },
+        action : { setBoardlist, setId, setUser, setCommentlist, cidCount, setLikelist }
     }
     
     return <DataContext.Provider value={value}>
