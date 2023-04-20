@@ -68,13 +68,14 @@ const DataProvider = ({children}) => {
         ]
     )
 
+    // 좋아요 배열은 user와 연결해서 사용! >> 지금은 연결하지않고 진행
     // 좋아요 배열을 사용하기 위함 useState()
     // 좋아요 표시를 목록에서 먼저 표시 진행
     // 게시글안에서 표시(나중에 생각)
     const [likelist, setLikelist] = useState(
         [
             {
-                boardId:1,
+                boardId : 1,
                 title : "첫번째 게시물입니다"
             }
         ]

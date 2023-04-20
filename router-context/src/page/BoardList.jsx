@@ -64,9 +64,13 @@ export default function BoardList() {
                          * : 삼항연산자
                          */}
                         <span onClick={ ()=>{likeClick(data)} }>
-                        {
-                            value.state.likelist.find((like)=>(like.boardId === data.id))
-                            ? <span>🧡</span>: <span>🤍</span>
+                        {// 삼항연산자와 && 연산자 사용(참일때 화면출력)
+                        // 1. 로그인 되었을때 화면에 출력(&&) 비교/논리 연산자X
+                        // 2. find()의 값을 통해 하트색 결정
+                        // 3. 각 내용을 구분하기위해 ()로 묶어줌
+                            value.state.user.login && 
+                                ( value.state.likelist.find((like)=>(like.boardId === data.id))
+                                ? <span>🧡</span>: <span>🤍</span>)
                         }
                         </span>
                         <Link to={`/boardlist/${data.id}`}>
