@@ -4,8 +4,15 @@ import { NavLink } from 'react-router-dom'
 export default function NavHeader() {
   return (
     <div>
-        <NavLink to='/'>Home</NavLink>
-        <NavLink to='/storylist'>Story</NavLink>
+        <NavLink to='/' 
+          style={({isActive})=>( isActive ? {color:"green"} : undefined )}>
+          Home
+        </NavLink>
+        <NavLink to='/storylist'
+          style={({isActive})=>( isActive ? {color:"green"} : undefined )}
+        >
+          Story
+        </NavLink>
     </div>
   )
 }
