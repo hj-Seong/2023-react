@@ -5,14 +5,14 @@ export default function NavHeader() {
   return (
     <div>
         <NavLink to='/' 
-          style={({isActive})=>( isActive ? {color:"green"} : undefined )}>
+          className={({isActive})=>( isActive ? "nav on" : "nav" )}>
           Home
         </NavLink>
         <NavLink to='/storylist'
-          style={({isActive})=>( isActive ? {color:"green"} : undefined )}
-        >
+          className={({isActive})=>( isActive ? "nav on" : "nav" )}>
           Story
         </NavLink>
+        <hr />
     </div>
   )
 }
