@@ -51,6 +51,23 @@ export default function MyPage() {
     // URL.createObjectURL()을 이용하여 파일의 값을 변형해서 사용
     // 나중에 DB에서도 저장해서 사용 가능
 
+    /** URL.createObjectURL에서 오류 발생
+     * typeError : 잘못된 값이 들어갔을때 생기는 오류
+     *  >> 확인하니 값을 선택하지않았을때 undefined가 들어감
+     * 
+     * 해결방법 생각하기
+     * 1) undefined 값이 들어왔을때 다른 값으로 수정해서 넣기
+     * 2) undefined가 들어왔을 때 메소드(함수) 중지
+     * 
+     * 2) 메소드 중지를 하는 방법 : return을 실행하면 메소드가 종료
+     */
+
+    if (e.target.files[0] === undefined) {
+        // return 을 사용하여 메소드 종료
+        return -1;
+    }
+
+
     // user.profile에 넣어서 사용
     action.setUser(
         {
