@@ -67,7 +67,11 @@ export default function MyPage() {
         return -1;
     }
 
-
+    // 아래 코드를 이용하여 프로필 화면이 바뀜
+    // 모달창의 확인버튼을 눌렀을때 바뀌게 할려면 아래 코드를 옮겨서 사용, 
+    // 단 위치가 바뀌면 e.target.files[0] 값을 잃어버리기 때문에 
+    // useState()를 이용하여 저장해서 사용한다
+    
     // user.profile에 넣어서 사용
     action.setUser(
         {
