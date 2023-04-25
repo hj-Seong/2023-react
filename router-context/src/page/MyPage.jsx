@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useRef, useState } from 'react'
 
 import imgFile from '../img/profile.jpg'
 
@@ -8,6 +8,20 @@ import { Link } from 'react-router-dom'
 
 export default function MyPage() {
   const { state, action } = useContext(DataContext);
+
+  const [show, setShow] = useState(false);
+
+  // DOM에 접근하기위해 리액트에서 id 대신 사용하는 useRef
+  // id 대신에 useRef를 사용하는 이유
+  // : id값으로 접근하면 return의 화면이 다 호출된 뒤에 접근
+  //   >> useEffect를 이용해서 마운트 후에 id접근
+  // useRef를 사용하면 바로 작성을 해도 마운트 후에 값을 가져옴
+
+  // React는 가상 돔이기 때문에 render이후에 return의 태그들이 화면에 출력
+  const prePic = useRef();
+
+
+
 
 
   // 좋아요 삭제 메소드
@@ -21,6 +35,8 @@ export default function MyPage() {
 
   // 프로필 이미지를 바꾸는 메소드 >> 모달창 사용하는 방식
   const changeProfile = () => {
+    setShow(true)
+
     // 1. 사진을 선택하는 창 출력(파일입력) 
     // 2. 그 사진을 선택하면 프로필 사진이 바뀜
     //    (set메소드를 이용하여 user.profile의 값이 수정)
@@ -42,6 +58,14 @@ export default function MyPage() {
             profile : URL.createObjectURL(e.target.files[0])
         }
     )
+
+    // useRef로 들고온 미리보기 div를 들고와서
+    // style의 backgroundImage 바꿔서 출력
+    console.log(prePic);
+    prePic.current.style.backgroundSize = "cover";
+    prePic.current.style.backgroundImage = `url(${URL.createObjectURL(e.target.files[0])})`
+
+
   } 
 
 
@@ -76,7 +100,58 @@ export default function MyPage() {
             }
         </ul>
 
-        {/** 모달창을 사용하기 위한 공간*/}
+        {/** 모달창을 사용하기 위한 공간
+         * 모달창의 형태 : 전체화면에 출력되는 창
+         * 디자인은 먼저 넣어주는 것 : 전체화면에 출력되기 때문
+        */}
+        <div className='modal-background' 
+            style={{
+                width:"100%",
+                height:"100vh",
+                backgroundColor :"rgba(0,0,0,0.3)",
+                position: "fixed",
+                top: "0",
+                // 모달 창의 화면을 display의 값에 따라 수정
+                // >> useState로 작성하여서 화면에 출력
+                // show를 이용해서 T/F
+                display : show ? 'block' :'none'
+            }}
+        >
+            <div className='modal' 
+                style={{
+                    width:"80%",
+                    height:"200px",
+                    backgroundColor: "white",
+                    borderRadius : "10px",
+                    margin: "auto",
+                    marginTop : "40px",
+                    padding: "30px 10px"
+                }}
+            >
+                {/** 미리보기 이미지 > img태그를 통해 가져와도 무방
+                 * div의 backgroundImage를 통해 가져오기
+                 * 
+                 * ✔이미지 값을 넣어주기 위해서 div의 ref를 지정하여 
+                 * DOM으로 들고와서 지정
+                 * 
+                 * 이미지값을 useState저장해서 값이 있을때
+                 * backgroudImage에 출력(modal 참고)
+                 */}
+                <div ref={ prePic }
+                    style={{
+                        width: "150px",
+                        height : "150px",
+                        backgroundColor : "lightgray"
+                    }}
+                >
+                </div>
+                
+                <input type="file" onChange={ onLoadFile } />
+                <button onClick={()=>{setShow(false)}}>
+                    닫기
+                </button>
+            </div>
+        </div>
     </div>
   )
 }
