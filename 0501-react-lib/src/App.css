@@ -40,3 +40,20 @@
 .slick-dots {
   bottom : 50px
 }
+
+.icon-style {
+  width: 40px;
+  height: 40px;
+  color: rgb(36, 36, 36);
+}
+.icon-style:hover {
+  color: orange;
+  transition: all 0.5s;
+}
+
+
+.icon-box {
+  display: flex;
+  justify-content: space-around;
+  margin-top: 20px;
+}
